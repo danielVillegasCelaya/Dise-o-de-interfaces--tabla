@@ -11,7 +11,7 @@ export function App() {
     <Router>
       <Header />
       <BootstrapHeader />
-      <Coches/>
+   
       {MenuItems.map((item) => {
         return (
           <Route
