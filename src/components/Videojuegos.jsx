@@ -8,14 +8,11 @@ import {
 class Videojuegos extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      id: DatosTablaVideojuegos[0].Nombre,
-    };
   }
 
-  seleccionarJuego() {
-    this.setState({});
-  }
+   recogerDetallesVideojuego = (e) => {
+    const videojuego = e.target.getAttribute('item.Nombre');
+  };
 
   render() {
     return (
@@ -34,9 +31,9 @@ class Videojuegos extends React.Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {DatosTablaVideojuegos.map((item) => {
+                  {DatosTablaVideojuegos.map((item, index) => {
                     return (
-                      <tr>
+                      <tr key={index} onClick={this.recogerDetallesVideojuego}>
                         <td>{item.Nombre}</td>
                         <td>{item.Categoria}</td>
                         <td>{item.Multijugador}</td>
