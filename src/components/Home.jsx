@@ -1,10 +1,9 @@
 import React from 'react';
-import Coches from './Coches';
 
 export function Home() {
   return (
     <div className="main-site">
-      <Coches />
+      <h1>Bienvenido!</h1>
     </div>
   );
 }
