@@ -4,15 +4,24 @@ import {
   TitulosTablaVideojuegos,
   DatosTablaVideojuegos,
 } from '../data/DatosVideojuegos';
+import uuid from 'react-uuid';
 
 class Videojuegos extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      videojuego: 0,
+    };
   }
 
-   recogerDetallesVideojuego = (e) => {
-    const videojuego = e.target.getAttribute('item.Nombre');
-  };
+  recogerDetallesVideojuego(e) {
+    for (let i = 0; i < DatosTablaVideojuegos.length; i++) {
+      if (e == DatosTablaVideojuegos[i].Nombre) {
+        this.setState({ videojuego: i });
+        break;
+      }
+    }
+  }
 
   render() {
     return (
@@ -23,7 +32,7 @@ class Videojuegos extends React.Component {
             <Col lg={8} md={6}>
               <Table responsive striped>
                 <thead>
-                  <tr>
+                  <tr key={uuid()}>
                     <th>{TitulosTablaVideojuegos.id}</th>
                     <th>{TitulosTablaVideojuegos.categoria}</th>
                     <th>{TitulosTablaVideojuegos.multijugador}</th>
@@ -31,9 +40,14 @@ class Videojuegos extends React.Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {DatosTablaVideojuegos.map((item, index) => {
+                  {DatosTablaVideojuegos.map((item) => {
                     return (
-                      <tr key={index} onClick={this.recogerDetallesVideojuego}>
+                      <tr
+                        key={uuid()}
+                        onClick={() =>
+                          this.recogerDetallesVideojuego(item.Nombre)
+                        }
+                      >
                         <td>{item.Nombre}</td>
                         <td>{item.Categoria}</td>
                         <td>{item.Multijugador}</td>
@@ -46,15 +60,23 @@ class Videojuegos extends React.Component {
             </Col>
             <Col lg={4} md={6}>
               <Card style={{ width: '18rem' }}>
-                <Card.Img variant="top" src={DatosTablaVideojuegos[2].Imagen} />
+                <Card.Img
+                  variant="top"
+                  src={DatosTablaVideojuegos[this.state.videojuego].Imagen}
+                />
                 <Card.Body>
-                  <Card.Title>{DatosTablaVideojuegos[2].Nombre}</Card.Title>
+                  <Card.Title>
+                    {DatosTablaVideojuegos[this.state.videojuego].Nombre}
+                  </Card.Title>
                   <Card.Text>
-                    Categoria: {DatosTablaVideojuegos[2].Categoria}
+                    Categoria:{' '}
+                    {DatosTablaVideojuegos[this.state.videojuego].Categoria}
                     <p />
-                    Multijugador: {DatosTablaVideojuegos[2].Multijugador}
+                    Multijugador:{' '}
+                    {DatosTablaVideojuegos[this.state.videojuego].Multijugador}
                     <p />
-                    Historia: {DatosTablaVideojuegos[2].Historia}
+                    Historia:{' '}
+                    {DatosTablaVideojuegos[this.state.videojuego].Historia}
                   </Card.Text>
                 </Card.Body>
               </Card>
