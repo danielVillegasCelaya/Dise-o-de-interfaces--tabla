@@ -4,16 +4,25 @@ import {
   TitulosTablaVideojuegos,
   DatosTablaVideojuegos,
 } from '../data/DatosVideojuegos';
+
 class Videojuegos extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      id: DatosTablaVideojuegos[0].Nombre,
+    };
   }
+
+  seleccionarJuego() {
+    this.setState({});
+  }
+
   render() {
     return (
       <div className="main-site">
         <h1>Videojuegos</h1>
         <Container>
-          <Row>
+          <Row onClick="">
             <Col lg={8} md={6}>
               <Table responsive striped>
                 <thead>
@@ -42,10 +51,7 @@ class Videojuegos extends React.Component {
               <Card style={{ width: '18rem' }}>
                 <Card.Img variant="top" src={DatosTablaVideojuegos[2].Imagen} />
                 <Card.Body>
-                  <Card.Title>
-                    {DatosTablaVideojuegos[2].Categoria}{' '}
-                    {DatosTablaVideojuegos[2].Multijugador}
-                  </Card.Title>
+                  <Card.Title>{DatosTablaVideojuegos[2].Nombre}</Card.Title>
                   <Card.Text>
                     Categoria: {DatosTablaVideojuegos[2].Categoria}
                     <p />
