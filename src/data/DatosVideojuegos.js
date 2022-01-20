@@ -31,4 +31,12 @@ export const DatosTablaVideojuegos = [
     Imagen:
       'https://www.esportmaniacos.com/wp-content/uploads/2021/12/escape-from-tarkov-nvidia-reflex-available-now-ogimage1.jpg',
   },
+  {
+    Nombre: 'Elden Ring',
+    Categoria: 'Souls-like',
+    Multijugador: 'Si',
+    Historia: 'Si',
+    Imagen:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZ4wK5viN7ASQ1zCLHygXp10VduLvmlDoQsw&usqp=CAU',
+  },
 ];
