@@ -28,7 +28,7 @@ class Videojuegos extends React.Component {
       <div className="main-site">
         <h1>Videojuegos</h1>
         <Container>
-          <Row onClick="">
+          <Row>
             <Col lg={8} md={6}>
               <Table responsive striped>
                 <thead>
