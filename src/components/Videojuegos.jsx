@@ -59,13 +59,13 @@ class Videojuegos extends React.Component {
               </Table>
             </Col>
             <Col lg={4} md={6}>
-              <Card style={{ width: '18rem' }}>
+              <Card style={{ width: '30rem' }}>
                 <Card.Img
                   variant="top"
                   src={DatosTablaVideojuegos[this.state.videojuego].Imagen}
                 />
                 <Card.Body>
-                  <Card.Title>
+                  <Card.Title style >
                     {DatosTablaVideojuegos[this.state.videojuego].Nombre}
                   </Card.Title>
                   <Card.Text>
