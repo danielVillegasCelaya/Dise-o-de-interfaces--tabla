@@ -65,7 +65,7 @@ class Videojuegos extends React.Component {
                   src={DatosTablaVideojuegos[this.state.videojuego].Imagen}
                 />
                 <Card.Body>
-                  <Card.Title style >
+                  <Card.Title>
                     {DatosTablaVideojuegos[this.state.videojuego].Nombre}
                   </Card.Title>
                   <Card.Text>
