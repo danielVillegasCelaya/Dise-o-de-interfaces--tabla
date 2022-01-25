@@ -20,6 +20,10 @@ class Home extends React.Component {
     });
   }
 
+  componentDidMount(){
+    this.setState({user:localStorage.getItem('user'),contrasena:localStorage.getItem('contrasena')})
+  }
+
   render() {
     if (
       this.state !== null &&
@@ -65,6 +69,10 @@ class Home extends React.Component {
         </div>
       );
     }
+  }
+  componentWillUnmount() {
+    localStorage.setItem('user', this.state.user);
+    localStorage.setItem('contrasena', this.state.contrasena);
   }
 }
 export default Home;
