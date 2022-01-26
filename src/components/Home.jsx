@@ -20,8 +20,18 @@ class Home extends React.Component {
     });
   }
 
-  componentDidMount(){
-    this.setState({user:localStorage.getItem('user'),contrasena:localStorage.getItem('contrasena')})
+  logout() {
+    this.setState({
+      user: '',
+      contrasena: '',
+    });
+  }
+
+  componentDidMount() {
+    this.setState({
+      user: localStorage.getItem('user'),
+      contrasena: localStorage.getItem('contrasena'),
+    });
   }
 
   render() {
