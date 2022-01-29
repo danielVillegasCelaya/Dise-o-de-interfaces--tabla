@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from 'react-bootstrap/esm/Button';
+import { DatosUsuarios } from '../data/DatosUsuarios';
 import { Form, Container, Button } from 'react-bootstrap';
 class Home extends React.Component {
   constructor(props) {
@@ -7,24 +8,39 @@ class Home extends React.Component {
     this.state = {
       user: '',
       contrasena: '',
+      done: true,
     };
     this.login = this.login.bind(this);
     this.userR = React.createRef();
     this.contrasenaR = React.createRef();
+    this.comprobacionClass = '';
   }
 
   login() {
-    this.setState({
-      user: this.userR.current.value,
-      contrasena: this.contrasenaR.current.value,
-    });
+    for (let i = 0; i < DatosUsuarios.length; i++) {
+      if (
+        DatosUsuarios[i].Nombre == this.userR.current.value ||
+        DatosUsuarios[i].Contrasena == this.contrasenaR.current.value
+      ) {
+        this.setState()({
+          user: this.userR.current.value,
+          contrasena: this.contrasenaR.current.value,
+          done: true,
+        });
+      } else {
+        this.setState({
+          done: false,
+        });
+      }
+    }
   }
 
-  logout() {
-    this.setState({
-      user: '',
-      contrasena: '',
-    });
+  comprobacion() {
+    if (!this.state.done) {
+      this.comprobacionClass = 'is-invalid';
+    } else {
+      this.comprobacionClass = '';
+    }
   }
 
   componentDidMount() {
@@ -35,6 +51,7 @@ class Home extends React.Component {
   }
 
   render() {
+    this.comprobacion();
     if (
       this.state !== null &&
       this.state.user !== null &&
@@ -57,7 +74,12 @@ class Home extends React.Component {
                   type="text"
                   placeholder="Usuario"
                   ref={this.userR}
+                  className={this.comprobacionClass}
                 />
+
+                <Form.Control.Feedback type="invalid">
+                  Usuario incorrecto
+                </Form.Control.Feedback>
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -66,12 +88,20 @@ class Home extends React.Component {
                   type="password"
                   placeholder="Contraseña"
                   ref={this.contrasenaR}
+                  className={this.comprobacionClass}
                 />
+                <Form.Control.Feedback type="invalid">
+                  Contraseña incorrecta
+                </Form.Control.Feedback>
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicCheckbox">
                 <Form.Check type="checkbox" label="Recordarme" />
               </Form.Group>
-              <Button variant="primary" type="submit" onClick={this.login}>
+              <Button
+                variant="primary"
+                type="submit"
+                onClick={this.login.bind(this)}
+              >
                 Login
               </Button>
             </Form>

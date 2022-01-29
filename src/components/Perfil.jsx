@@ -1,68 +1,51 @@
 import React from 'react';
-import {CamposUsuario, DatosUsuarios} from '../data/DatosUsuarios'
+import Button from 'react-bootstrap/esm/Button';
+import { CamposUsuario, DatosUsuarios } from '../data/DatosUsuarios';
 
 class Perfil extends React.Component {
   constructor(props) {
     this.state = {
-      user: '',
-      contrasena: '',
+      usuario: -1,
     };
-    this.logout=this.logout.bind(this);
-
   }
 
   logout() {
-    this.setState({
-      user: '',
-      contrasena: '',
-    });
+    localStorage.clear();
   }
 
-  recogerDetallesUsuario(e) {
+  componentDidMount() {
     for (let i = 0; i < DatosUsuarios.length; i++) {
-      if (e == DatosUsuarios[i].Nombre) {
+      if (
+        DatosUsuarios[i].Nombre === localStorage.getItem('user') &&
+        DatosUsuarios[i].Contrasena == localStorage.getItem('contrasena')
+      ) {
         this.setState({ usuario: i });
-        break;
       }
     }
   }
 
-
-  componentDidMount() {
-    this.setState({
-      user: localStorage.getItem('user'),
-      contrasena: localStorage.getItem('contrasena'),
-    });
+  render() {
+    if (this.setState.usuario == -1) {
+      return (
+        <div className="main-site">
+          <h1> Tienes que iniciar sesión</h1>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <h1>Perfil</h1>
+          <h2>Nombre {DatosUsuarios[this.state.usuario].Nombre}</h2>
+          <h2>Contraseña {DatosUsuarios[this.state.usuario].Contrasena}</h2>
+          <h2>Ciudad {DatosUsuarios[this.state.usuario].Ciudad}</h2>
+          <h2>Email {DatosUsuarios[this.state.usuario].Email}</h2>
+          <h2>Foto {DatosUsuarios[this.state.usuario].Imagen}</h2>
+          <br />
+          <input type="button" onClick={this.logout.bind(this)}>
+            Cerrar sesión
+          </input>
+        </div>
+      );
+    }
   }
-
-  render(){
-    return(
-      <div><tbody>
-      {DatosUsuarios.map((item) => {
-        return (
-          <h1
-            key={uuid()}
-            onClick={() =>
-              this.recogerDetallesUsuario(user)
-            }
-          >
-            <h2>Nombre {item.Nombre}</h2>
-            <h2>Contraseña {item.Contrasena}</h2>
-            <h2>Ciudad {item.Ciudad}</h2>
-            <h2>Email {item.Email}</h2>
-            <h2>Foto {item.Imagen}</h2>
-          </h1>
-        );
-      })}
-    </tbody>
-        <h2>Nombre</h2>
-        <h2>Contraseña</h2>
-        <h2>Ciudad</h2>
-        <h2>Email</h2>
-        <h2>Foto</h2>
-      </div>  
-    );
-  }
-
-
 }
