@@ -53,10 +53,10 @@ class Home extends React.Component {
   render() {
     this.comprobacion();
     if (
-      this.state === null ||
-      this.state.user === null ||
-      this.state.user === '' ||
-      this.state.user === 'null'
+      this.state !== null ||
+      this.state.user !== null ||
+      this.state.user !== '' ||
+      this.state.user !== 'null'
     ) {
       return (
         <div className="main-site">
