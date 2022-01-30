@@ -19,7 +19,7 @@ class Home extends React.Component {
   login() {
     for (let i = 0; i < DatosUsuarios.length; i++) {
       if (
-        DatosUsuarios[i].Nombre == this.userR.current.value ||
+        DatosUsuarios[i].Nombre == this.userR.current.value &&
         DatosUsuarios[i].Contrasena == this.contrasenaR.current.value
       ) {
         this.setState()({
@@ -53,9 +53,10 @@ class Home extends React.Component {
   render() {
     this.comprobacion();
     if (
-      this.state !== null &&
-      this.state.user !== null &&
-      this.state.user !== ''
+      this.state === null ||
+      this.state.user === null ||
+      this.state.user === '' ||
+      this.state.user === 'null'
     ) {
       return (
         <div className="main-site">
