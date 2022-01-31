@@ -3,6 +3,7 @@ import { PaginaListas } from '../components/PaginaListas';
 import Perfil from '../components/Perfil';
 import Coches from '../components/Coches';
 import Videojuegos from '../components/Videojuegos';
+import Musica from '../components/Musica';
 
 export const MenuItems = [
   {
@@ -34,6 +35,12 @@ export const MenuItems = [
     path: '/videojuegos',
     title: 'Videojuegos',
     component: Videojuegos,
+  },
+  {
+    id: 6,
+    path: '/musica',
+    title: 'Musica',
+    component: Musica,
   },
 ];
 
