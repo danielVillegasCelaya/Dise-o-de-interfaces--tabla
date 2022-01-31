@@ -4,7 +4,7 @@ import uuid from 'react-build';
 class Musica extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { selectedItem: null, tableData: [] };
+    this.state = { selectedItem: 0, tableData: [] };
   }
 
   async componentDidMount() {
@@ -12,8 +12,12 @@ class Musica extends React.Component {
       'https://zoo-animal-api.herokuapp.com/animals/rand/9'
     );
     const responseData = await response.json();
-    this.setState({ tableData: responseData });
+    this.setState({ tableData: responseData, selectedItem: responseData[0] });
   }
+
+  recogerDetallesAnimal = (item) => {
+    this.setState({ selectedItem: item });
+  };
 
   render() {
     return (
@@ -32,9 +36,9 @@ class Musica extends React.Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {this.tableData.map((item) => {
+                  {this.state.tableData.map((item) => {
                     return (
-                      <tr>
+                      <tr onClick={() => this.recogerDetallesAnimal(item)}>
                         <td>{item.name}</td>
                         <td>{item.animal_type}</td>
                         <td>{item.habitat}</td>
@@ -49,14 +53,14 @@ class Musica extends React.Component {
               <Card style={{ width: '18rem' }}>
                 <Card.Img
                   variant="top"
-                  src={this.state.selectedItem.image_url}
+                  src={this.state.selectedItem.image_link}
                 />
                 <Card.Body>
-                  <Card.Title>{this.state.selectedItem.title}</Card.Title>
+                  <Card.Title>{this.state.selectedItem.name}</Card.Title>
                   <Card.Text>
-                    Cantantes: {this.state.selectedItem.singers}
+                    Habitat: {this.state.selectedItem.habitat}
                     <p />
-                    Duración: {this.state.selectedItem.duration}
+                    Esperanza de vida: {this.state.selectedItem.lifespan}
                   </Card.Text>
                 </Card.Body>
               </Card>
