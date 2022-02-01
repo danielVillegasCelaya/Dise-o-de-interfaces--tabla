@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Container, Table, Row, Col } from 'react-bootstrap';
 import uuid from 'react-build';
-class Musica extends React.Component {
+class Animales extends React.Component {
   constructor(props) {
     super(props);
     this.state = { selectedItem: 0, tableData: [] };
@@ -72,4 +72,4 @@ class Musica extends React.Component {
   }
 }
 
-export default Musica;
+export default Animales;

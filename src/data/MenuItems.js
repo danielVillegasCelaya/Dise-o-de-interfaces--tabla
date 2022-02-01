@@ -3,7 +3,7 @@ import { PaginaListas } from '../components/PaginaListas';
 import Perfil from '../components/Perfil';
 import Coches from '../components/Coches';
 import Videojuegos from '../components/Videojuegos';
-import Musica from '../components/Musica';
+import Animales from '../components/Animales';
 
 export const MenuItems = [
   {
@@ -38,9 +38,9 @@ export const MenuItems = [
   },
   {
     id: 6,
-    path: '/musica',
-    title: 'Musica',
-    component: Musica,
+    path: '/animales',
+    title: 'Animales',
+    component: Animales,
   },
 ];
 
