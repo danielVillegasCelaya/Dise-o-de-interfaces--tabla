@@ -22,7 +22,7 @@ class Animales extends React.Component {
   render() {
     return (
       <div className="main-site">
-        <h1>Musica</h1>
+        <h1>Animales</h1>
         <Container>
           <Row>
             <Col lg={8} md={6}>
